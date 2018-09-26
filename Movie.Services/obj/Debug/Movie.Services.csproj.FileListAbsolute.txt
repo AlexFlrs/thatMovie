@@ -1,0 +1,9 @@
+C:\SF.Code\ThatMovie\Movie.Services\bin\Debug\Movie.Services.dll
+C:\SF.Code\ThatMovie\Movie.Services\bin\Debug\Movie.Services.pdb
+C:\SF.Code\ThatMovie\Movie.Services\obj\Debug\Movie.Services.csprojAssemblyReference.cache
+C:\SF.Code\ThatMovie\Movie.Services\obj\Debug\Movie.Services.csproj.CoreCompileInputs.cache
+C:\SF.Code\ThatMovie\Movie.Services\obj\Debug\Movie.Services.dll
+C:\SF.Code\ThatMovie\Movie.Services\obj\Debug\Movie.Services.pdb
+C:\SF.Code\ThatMovie\Movie.Services\bin\Debug\Movie.Models.dll
+C:\SF.Code\ThatMovie\Movie.Services\bin\Debug\Movie.Models.pdb
+C:\SF.Code\ThatMovie\Movie.Services\obj\Debug\Movie.Services.csproj.CopyComplete

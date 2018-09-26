@@ -1,0 +1,6 @@
+C:\SF.Code\ThatMovie\Movie.Models\bin\Debug\Movie.Models.dll
+C:\SF.Code\ThatMovie\Movie.Models\bin\Debug\Movie.Models.pdb
+C:\SF.Code\ThatMovie\Movie.Models\obj\Debug\Movie.Models.csprojAssemblyReference.cache
+C:\SF.Code\ThatMovie\Movie.Models\obj\Debug\Movie.Models.csproj.CoreCompileInputs.cache
+C:\SF.Code\ThatMovie\Movie.Models\obj\Debug\Movie.Models.dll
+C:\SF.Code\ThatMovie\Movie.Models\obj\Debug\Movie.Models.pdb
