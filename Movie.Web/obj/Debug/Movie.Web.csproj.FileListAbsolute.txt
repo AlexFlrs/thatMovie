@@ -132,3 +132,5 @@ C:\SF.Code\ThatMovie\Movie.Web\bin\Unity.Abstractions.dll
 C:\SF.Code\ThatMovie\Movie.Web\bin\Unity.AspNet.WebApi.dll
 C:\SF.Code\ThatMovie\Movie.Web\bin\Unity.Container.dll
 C:\SF.Code\ThatMovie\Movie.Web\bin\WebActivatorEx.dll
+C:\SF.Code\ThatMovie\Movie.Web\bin\AngleSharp.dll
+C:\SF.Code\ThatMovie\Movie.Web\bin\AngleSharp.xml

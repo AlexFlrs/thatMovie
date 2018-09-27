@@ -14,10 +14,10 @@ namespace Movie.Web.Controllers.API
     {
         // GetAll
         [Route, HttpGet]
-        public List<MovieDomain> GetAll()
+        public HttpResponseMessage GetAll()
         {
             List<MovieDomain> movies = ThatMovieService.GetAll();
-            return movies;
+            return Request.CreateResponse(HttpStatusCode.OK, movies);
            
         }
 

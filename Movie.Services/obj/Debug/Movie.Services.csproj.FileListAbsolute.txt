@@ -7,3 +7,5 @@ C:\SF.Code\ThatMovie\Movie.Services\obj\Debug\Movie.Services.pdb
 C:\SF.Code\ThatMovie\Movie.Services\bin\Debug\Movie.Models.dll
 C:\SF.Code\ThatMovie\Movie.Services\bin\Debug\Movie.Models.pdb
 C:\SF.Code\ThatMovie\Movie.Services\obj\Debug\Movie.Services.csproj.CopyComplete
+C:\SF.Code\ThatMovie\Movie.Services\bin\Debug\AngleSharp.dll
+C:\SF.Code\ThatMovie\Movie.Services\bin\Debug\AngleSharp.xml

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using Movie.Models.Requests;
+using System.Net;
+using AngleSharp.Parser.Html;
 
 namespace Movie.Services
 {
@@ -80,6 +83,28 @@ namespace Movie.Services
                     return result;
                 }
 
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            var results = new List<MovieScraper>();
+            // 1. Download the HTML for the page
+            var webClient = new WebClient();
+            var html = webClient.DownloadString("https://www.imdb.com/chart/top?ref_=nv_mv_250");
+
+            // 2. Use CSS selectors to find the table
+            var parser = new HtmlParser();
+            var document = parser.Parse(html);
+            var table = document.QuerySelector(".lister-list");
+
+            // 3. Loop over every row and create an object for each row
+            var rows = table.QuerySelectorAll("tr");
+
+            // 4. Print out the results
+            foreach (var movieScraper in results)
+            {
+                Console.WriteLine($"Poster={movieScraper.Poster}, Title={movieScraper.Title}");
             }
         }
 

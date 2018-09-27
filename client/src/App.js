@@ -1,21 +1,46 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { getAllMovies } from "./MovieServices";
 
-class App extends Component {
+class Movies extends React.Component {
+  state = {
+    movies: []
+  };
+
+  nameChange = event => {
+    this.setState({ name: event.target.value });
+  };
+
+  componentDidMount() {
+    const allMoviesPromise = getAllMovies();
+
+    allMoviesPromise
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React King Alex!</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <div>
+          <header className="App-header">
+            <h1 className="App-title">That Movie!!</h1>
+          </header>
+        </div>
+
+        {this.state.movies.map(movie => (
+          <div>
+            <img style={{ width: 200, height: 200 }} src={movie.movieImage} />
+            <h3>{movie.title}</h3>
+          </div>
+        ))}
       </div>
     );
   }
 }
 
-export default App;
+export default Movies;
