@@ -1,4 +1,5 @@
 ﻿using Movie.Models.Domain;
+using Movie.Models.Requests;
 using Movie.Services;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,25 @@ namespace Movie.Web.Controllers.API
         [Route("{id:int}"), HttpGet]
         public HttpResponseMessage GetById(int id)
         {
-            var movie = new MovieDomain();
-            return Request.CreateResponse(HttpStatusCode.OK); 
+            List<MovieDomain> movies = ThatMovieService.GetById(id);
+            return Request.CreateResponse(HttpStatusCode.OK, movies); 
         }
 
         // POST: api/Movies
         [Route,HttpPost]
-        public HttpResponseMessage Post([FromBody]string value)
+        public HttpResponseMessage Create(MovieCreateRequest movieCreateRequest)
         {
+            if (movieCreateRequest == null)
+            {
+                ModelState.AddModelError("", "Missing body data!");
+            }
+            if(!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            int newMovieId = ThatMovieService.Create(movieCreateRequest);
+
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 

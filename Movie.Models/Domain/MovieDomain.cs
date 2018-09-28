@@ -13,7 +13,10 @@ namespace Movie.Models.Domain
         public string Director { get; set; }
         public string Actors { get; set; }
         public string Description { get; set; }
+        public string Genre { get; set; }
         public string MovieImage { get; set; }
+        public int Year { get; set; }
+        public string Rated { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
     }

@@ -35,7 +35,10 @@ namespace Movie.Services
                         movie.Actors = (string)rdr["Actors"];
                         movie.Director = (string)rdr["Director"];
                         movie.Description = (string)rdr["Description"];
+                        movie.Genre = (string)rdr["Genre"];
                         movie.MovieImage = (string)rdr["MovieImage"];
+                        movie.Year = (int)rdr["Year"];
+                        movie.Rated = (string)rdr["Rated"];
                         movie.DateCreated = (DateTime)rdr["DateCreated"];
                         movie.DateModified = (DateTime)rdr["Datemodified"];
                         if (result == null)
@@ -46,7 +49,7 @@ namespace Movie.Services
                     };
                     return result;
                 }
-                
+
             }
         }
 
@@ -72,6 +75,8 @@ namespace Movie.Services
                         movie.Director = (string)rdr["Director"];
                         movie.Description = (string)rdr["Description"];
                         movie.MovieImage = (string)rdr["MovieImage"];
+                        movie.Year = (int)rdr["Year"];
+                        movie.Rated = (string)rdr["Rated"];
                         movie.DateCreated = (DateTime)rdr["DateCreated"];
                         movie.DateModified = (DateTime)rdr["Datemodified"];
                         if (result == null)
@@ -86,26 +91,33 @@ namespace Movie.Services
             }
         }
 
-        static void Main(string[] args)
+        public static int Create(MovieCreateRequest req)
         {
-            var results = new List<MovieScraper>();
-            // 1. Download the HTML for the page
-            var webClient = new WebClient();
-            var html = webClient.DownloadString("https://www.imdb.com/chart/top?ref_=nv_mv_250");
-
-            // 2. Use CSS selectors to find the table
-            var parser = new HtmlParser();
-            var document = parser.Parse(html);
-            var table = document.QuerySelector(".lister-list");
-
-            // 3. Loop over every row and create an object for each row
-            var rows = table.QuerySelectorAll("tr");
-
-            // 4. Print out the results
-            foreach (var movieScraper in results)
+            
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                Console.WriteLine($"Poster={movieScraper.Poster}, Title={movieScraper.Title}");
+
+                conn.Open();
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Movie_Insert";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Title", req.Title);
+                cmd.Parameters.AddWithValue("@Actors", req.Actors);
+                cmd.Parameters.AddWithValue("@Director", req.Director);
+                cmd.Parameters.AddWithValue("@Description", req.Description);
+                cmd.Parameters.AddWithValue("@MovieImage", req.MovieImage);
+                cmd.Parameters.AddWithValue("@Year", req.Year);
+                cmd.Parameters.AddWithValue("@Rated", req.Rated);
+
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.ExecuteNonQuery();
+
+                int newMovieId = (int)cmd.Parameters["@Id"].Value;
+                return newMovieId;
             }
+ 
         }
 
     }
