@@ -9,21 +9,14 @@ namespace Movie.Models.Requests
 {
     public class MovieCreateRequest
     {
-        [Required]
+        
         public string Title { get; set; }
-        [Required]
         public string Director { get; set; }
-        [Required]
         public string Actors { get; set; }
-        [Required]
         public string Description { get; set; }
-        [Required]
         public string Genre { get; set; }
-        [Required]
-        public string MovieImage { get; set; }
-        [Required]
         public int Year { get; set; }
-        [Required]
         public string Rated { get; set; }
+        public string MovieImage { get; set; }
     }
 }

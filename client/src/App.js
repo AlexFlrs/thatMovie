@@ -1,14 +1,29 @@
 import React from "react";
-import { getAllMovies } from "./MovieServices";
-import { Button, Navbar } from "reactstrap";
+import { getAllMovies, deleteMovie } from "./MovieServices";
+import {
+  Button,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
 class Movies extends React.Component {
   state = {
+    id: 0,
     movies: []
   };
 
-  nameChange = event => {
-    this.setState({ name: event.target.value });
+  handleDeleteMovie = id => {
+    const deleteMoviePromise = deleteMovie(id);
+    deleteMoviePromise.then(response => {
+      this.setState({ deleteCurrentMovie: response.data.message });
+    });
+    return this.props.history.push("/movielist");
+  };
+
+  handleEditMovie = id => {
+    return this.props.history.push("/editmovie/" + id);
   };
 
   componentDidMount() {
@@ -44,12 +59,23 @@ class Movies extends React.Component {
                   />
                 </div>
                 <div className="back">
-                  <div>
-                    <Button color="primary" id="edit" />
-                    <Button
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHJAhygoEzKwmOJW8BLYRl8Qo896gdt1-cxvcEP-lJnr6uY6Xv"
-                      id="delete"
-                    />
+                  <div className="float-right">
+                    <UncontrolledDropdown className="">
+                      <DropdownToggle caret />
+                      <DropdownMenu>
+                        <DropdownItem
+                          onClick={() => this.handleEditMovie(movie.id)}
+                        >
+                          Edit
+                        </DropdownItem>
+                        <hr />
+                        <DropdownItem
+                          onClick={() => this.handleDeleteMovie(movie.id)}
+                        >
+                          Delete
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
                   </div>
                   <h2 className="text-center">{movie.title}</h2>
                   <p className="text-center">{movie.genre}</p>

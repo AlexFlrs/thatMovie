@@ -47,7 +47,6 @@
     <Compile Include="Domain\MovieDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\MovieCreateRequest.cs" />
-    <Compile Include="Requests\MovieScraper.cs" />
     <Compile Include="Requests\MovieUpdateRequest.cs" />
   </ItemGroup>
   <ItemGroup>

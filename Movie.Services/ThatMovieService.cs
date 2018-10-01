@@ -15,6 +15,7 @@ namespace Movie.Services
 {
     public class ThatMovieService
     {
+
         public static List<MovieDomain> GetAll()
         {
             List<MovieDomain> result = null;
@@ -40,7 +41,7 @@ namespace Movie.Services
                         movie.Year = (int)rdr["Year"];
                         movie.Rated = (string)rdr["Rated"];
                         movie.DateCreated = (DateTime)rdr["DateCreated"];
-                        movie.DateModified = (DateTime)rdr["Datemodified"];
+                        movie.DateModified = (DateTime)rdr["DateModified"];
                         if (result == null)
                         {
                             result = new List<MovieDomain>();
@@ -74,11 +75,11 @@ namespace Movie.Services
                         movie.Actors = (string)rdr["Actors"];
                         movie.Director = (string)rdr["Director"];
                         movie.Description = (string)rdr["Description"];
-                        movie.MovieImage = (string)rdr["MovieImage"];
                         movie.Year = (int)rdr["Year"];
                         movie.Rated = (string)rdr["Rated"];
+                        movie.MovieImage = (string)rdr["MovieImage"];
                         movie.DateCreated = (DateTime)rdr["DateCreated"];
-                        movie.DateModified = (DateTime)rdr["Datemodified"];
+                        movie.DateModified = (DateTime)rdr["DateModified"];
                         if (result == null)
                         {
                             result = new List<MovieDomain>();
@@ -104,12 +105,13 @@ namespace Movie.Services
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Title", req.Title);
-                cmd.Parameters.AddWithValue("@Actors", req.Actors);
                 cmd.Parameters.AddWithValue("@Director", req.Director);
+                cmd.Parameters.AddWithValue("@Actors", req.Actors);
                 cmd.Parameters.AddWithValue("@Description", req.Description);
-                cmd.Parameters.AddWithValue("@MovieImage", req.MovieImage);
+                cmd.Parameters.AddWithValue("@Genre", req.Genre);
                 cmd.Parameters.AddWithValue("@Year", req.Year);
                 cmd.Parameters.AddWithValue("@Rated", req.Rated);
+                cmd.Parameters.AddWithValue("@MovieImage", req.MovieImage);
 
                 cmd.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.ExecuteNonQuery();
@@ -118,6 +120,47 @@ namespace Movie.Services
                 return newMovieId;
             }
  
+        }
+
+        public static void Update(MovieUpdateRequest req)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Movie_Update";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Title", req.Title);
+                cmd.Parameters.AddWithValue("@Director", req.Director);
+                cmd.Parameters.AddWithValue("@Actors", req.Actors);
+                cmd.Parameters.AddWithValue("@Description", req.Description);
+                cmd.Parameters.AddWithValue("@Genre", req.Genre);
+                cmd.Parameters.AddWithValue("@Year", req.Year);
+                cmd.Parameters.AddWithValue("@Rated", req.Rated);
+                cmd.Parameters.AddWithValue("@MovieImage", req.MovieImage);
+
+                cmd.ExecuteNonQuery();
+
+            }
+
+        }
+
+        public static void Delete(int id)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Movie_Delete";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.ExecuteNonQuery();
+            }
         }
 
     }
