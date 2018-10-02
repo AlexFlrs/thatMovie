@@ -75,6 +75,7 @@ namespace Movie.Services
                         movie.Actors = (string)rdr["Actors"];
                         movie.Director = (string)rdr["Director"];
                         movie.Description = (string)rdr["Description"];
+                        movie.Genre = (string)rdr["Genre"];
                         movie.Year = (int)rdr["Year"];
                         movie.Rated = (string)rdr["Rated"];
                         movie.MovieImage = (string)rdr["MovieImage"];
@@ -132,6 +133,7 @@ namespace Movie.Services
                 cmd.CommandText = "Movie_Update";
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@Id", req.Id);
                 cmd.Parameters.AddWithValue("@Title", req.Title);
                 cmd.Parameters.AddWithValue("@Director", req.Director);
                 cmd.Parameters.AddWithValue("@Actors", req.Actors);

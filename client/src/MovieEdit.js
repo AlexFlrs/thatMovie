@@ -62,6 +62,11 @@ class EditMovie extends React.Component {
     editMoviePromise.then(response => {
       this.setState({ editMovie: response.data.message });
     });
+    return this.props.history.push("/movielist");
+  };
+
+  handleCancelClicked = () => {
+    return this.props.history.push("/movielist");
   };
 
   componentDidMount() {
@@ -73,15 +78,15 @@ class EditMovie extends React.Component {
     currentMovie
       .then(response => {
         this.setState({
-          id: response.data.id,
-          title: response.data.title,
-          director: response.data.director,
-          actors: response.data.actors,
-          description: response.data.description,
-          genre: response.data.genre,
-          year: response.data.year,
-          rated: response.data.rated,
-          movieImage: response.data.movieImage
+          id: response.data[0].id,
+          title: response.data[0].title,
+          director: response.data[0].director,
+          actors: response.data[0].actors,
+          description: response.data[0].description,
+          genre: response.data[0].genre,
+          year: response.data[0].year,
+          rated: response.data[0].rated,
+          movieImage: response.data[0].movieImage
         });
       })
       .catch(err => {
@@ -124,6 +129,7 @@ class EditMovie extends React.Component {
               <Label>Description</Label>
               <Input
                 type="text"
+                rows="2"
                 value={this.state.description}
                 onChange={this.handleDescriptionEdit}
               />

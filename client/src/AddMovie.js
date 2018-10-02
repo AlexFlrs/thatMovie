@@ -60,7 +60,13 @@ class AddMovie extends React.Component {
     newMoviePromise.then(response => {
       this.setState({ addMovie: response.data.message });
     });
+    return this.props.history.push("/movielist");
   };
+
+  handleCancelClicked = () => {
+    return this.props.history.push("/movielist");
+  };
+
   render() {
     return (
       <div>

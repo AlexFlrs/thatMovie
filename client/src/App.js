@@ -26,6 +26,10 @@ class Movies extends React.Component {
     return this.props.history.push("/editmovie/" + id);
   };
 
+  handleAddClicked = () => {
+    return this.props.history.push("/addmovie");
+  };
+
   componentDidMount() {
     const allMoviesPromise = getAllMovies();
 
@@ -44,6 +48,13 @@ class Movies extends React.Component {
       <div id="background">
         <div id="heading" className="col-12 text-center">
           <h1 id="title">That Movie!!</h1>
+          <Button
+            className="my-auto ml-2"
+            color="success"
+            onClick={this.handleAddClicked}
+          >
+            +
+          </Button>
         </div>
         <div className="container col-md-12 row">
           {this.state.movies.map(movie => (
