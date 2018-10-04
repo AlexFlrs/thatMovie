@@ -1,6 +1,6 @@
 import React from "react";
 import { createMovie } from "./MovieServices";
-import { FormGroup, Label, Input, Button } from "reactstrap";
+import { FormGroup, Label, Input, Button, Row } from "reactstrap";
 
 class AddMovie extends React.Component {
   state = {
@@ -14,6 +14,7 @@ class AddMovie extends React.Component {
     movieImage: ""
   };
 
+  //----------Handlers-----------
   handleTitleAdd = event => {
     this.setState({ title: event.target.value });
   };
@@ -46,6 +47,8 @@ class AddMovie extends React.Component {
     this.setState({ movieImage: event.target.value });
   };
 
+  //---------------Submit Handler/Axios call------------
+
   handleSubmitAdd = () => {
     const newMoviePromise = createMovie(
       this.state.title,
@@ -69,12 +72,12 @@ class AddMovie extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="addBackground">
         <div className="container">
-          <div>
+          <div className="text-center text-white">
             <h1>Add New Movie</h1>
           </div>
-          <div className="col-md-4">
+          <div id="addForm" className="col-md-4">
             <FormGroup>
               <Label>Title</Label>
               <Input
@@ -102,7 +105,7 @@ class AddMovie extends React.Component {
             <FormGroup>
               <Label>Description</Label>
               <Input
-                type="text"
+                type="textarea"
                 value={this.state.description}
                 onChange={this.handleDescriptionAdd}
               />
@@ -115,21 +118,23 @@ class AddMovie extends React.Component {
                 onChange={this.handleGenreAdd}
               />
             </FormGroup>
-            <FormGroup>
-              <Label>Year</Label>
-              <Input
-                type="text"
-                value={this.state.year}
-                onChange={this.handleYearAdd}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Rated</Label>
-              <Input
-                type="text"
-                value={this.state.rated}
-                onChange={this.handleRatedAdd}
-              />
+            <FormGroup className="row mx-auto">
+              <div className="col-md-4">
+                <Label>Year</Label>
+                <Input
+                  type="text"
+                  value={this.state.year}
+                  onChange={this.handleYearAdd}
+                />
+              </div>
+              <div className="ml-auto col-md-4">
+                <Label>Rated</Label>
+                <Input
+                  type="text"
+                  value={this.state.rated}
+                  onChange={this.handleRatedAdd}
+                />
+              </div>
             </FormGroup>
             <FormGroup>
               <Label>Image URL</Label>
@@ -139,7 +144,7 @@ class AddMovie extends React.Component {
                 onChange={this.handleImageAdd}
               />
             </FormGroup>
-            <div className="text-center">
+            <div id="btns" className="text-center">
               <Button
                 className="my-auto ml-2"
                 color="primary"

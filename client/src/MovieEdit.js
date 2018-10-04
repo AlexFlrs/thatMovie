@@ -15,6 +15,7 @@ class EditMovie extends React.Component {
     movieImage: ""
   };
 
+  //------------Handlers------------------
   handleTitleEdit = event => {
     this.setState({ title: event.target.value });
   };
@@ -47,6 +48,7 @@ class EditMovie extends React.Component {
     this.setState({ movieImage: event.target.value });
   };
 
+  //------------------Submit Handler/Update Data Axios call----------
   handleEditSubmit = () => {
     const editMoviePromise = updateMovie(
       this.state.id,
@@ -69,6 +71,7 @@ class EditMovie extends React.Component {
     return this.props.history.push("/movielist");
   };
 
+  //---------------Axios call/Get data by Id----------------
   componentDidMount() {
     const href = window.location.href;
     const stringArray = href.split("/");
@@ -95,12 +98,12 @@ class EditMovie extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div id="addBackground">
         <div className="container">
-          <div>
+          <div className="text-center text-white">
             <h1>Edit Movie</h1>
           </div>
-          <div className="col-md-4">
+          <div id="addForm" className="col-md-4">
             <FormGroup>
               <Label>Title</Label>
               <Input
@@ -128,8 +131,7 @@ class EditMovie extends React.Component {
             <FormGroup>
               <Label>Description</Label>
               <Input
-                type="text"
-                rows="2"
+                type="textarea"
                 value={this.state.description}
                 onChange={this.handleDescriptionEdit}
               />
@@ -142,21 +144,23 @@ class EditMovie extends React.Component {
                 onChange={this.handleGenreEdit}
               />
             </FormGroup>
-            <FormGroup>
-              <Label>Year</Label>
-              <Input
-                type="text"
-                value={this.state.year}
-                onChange={this.handleYearEdit}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Rated</Label>
-              <Input
-                type="text"
-                value={this.state.rated}
-                onChange={this.handleRatedEdit}
-              />
+            <FormGroup className="row mx-auto">
+              <div className="col-md-4">
+                <Label>Year</Label>
+                <Input
+                  type="text"
+                  value={this.state.year}
+                  onChange={this.handleYearEdit}
+                />
+              </div>
+              <div className="ml-auto col-md-4">
+                <Label>Rated</Label>
+                <Input
+                  type="text"
+                  value={this.state.rated}
+                  onChange={this.handleRatedEdit}
+                />
+              </div>
             </FormGroup>
             <FormGroup>
               <Label>Image URL</Label>
@@ -166,7 +170,7 @@ class EditMovie extends React.Component {
                 onChange={this.handleImageEdit}
               />
             </FormGroup>
-            <div className="text-center">
+            <div id="btns" className="text-center">
               <Button
                 className="my-auto ml-2"
                 color="primary"

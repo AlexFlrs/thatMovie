@@ -38,7 +38,7 @@ namespace Movie.Web.Controllers.API
             
         }
 
-        // POST: api/Movies
+        // Create: api/Movies
         [Route,HttpPost]
         public HttpResponseMessage Create(MovieCreateRequest movieCreateRequest)
         {
@@ -56,7 +56,7 @@ namespace Movie.Web.Controllers.API
             return Request.CreateResponse(HttpStatusCode.OK, newMovieId);
         }
 
-        // PUT: api/Movies/5
+        // Update: api/Movies/5
         [Route("{id:int}"),HttpPut]
         public HttpResponseMessage Update(int id, MovieUpdateRequest movieUpdateRequest)
         {

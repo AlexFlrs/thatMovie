@@ -2,20 +2,35 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: black;
 }
 
 #background {
-  background-color: darkgrey;
+  background-color: rgb(0, 0, 0);
+  background-image: url(https://dcmp.org/images/learning_center/34/34-1.jpg);
+  background-size: 100%;
+  height: 100%;
+}
+
+#addBackground {
+  background-color: rgb(0, 0, 0);
+  background-image: url(https://dcmp.org/images/learning_center/34/34-1.jpg);
+  background-size: 100%;
+  height: 100vh;
 }
 
 #heading {
   background-color: black;
+  background-image: url(https://www.publicdomainpictures.net/pictures/190000/nahled/grunge-movie-reel.jpg);
+  background-size: 24%;
 }
 
 #title {
-  font-size: 80px;
-  font-family: fantasy;
-  color: floralwhite;
+  font-size: 100px;
+  font-family: magica;
+  color: rgb(155, 4, 4);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
 }
 #edit {
   width: 20px;
@@ -27,6 +42,78 @@ body {
   width: 20px;
   height: 20px;
   float: left;
+}
+
+#sec1 {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: floralwhite;
+}
+
+#sec2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 30px;
+  margin-right: 30px;
+  color: floralwhite;
+}
+
+#sec3 {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: floralwhite;
+}
+
+#sec4 {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: floralwhite;
+}
+
+#movTitle {
+  margin-left: 25px;
+  font-family: cursive;
+}
+
+#addForm {
+  margin: 0 auto;
+  background-color: rgb(97, 11, 30);
+  color: floralwhite;
+  box-shadow: 0px 0px 5px #fff;
+  border-radius: 15px;
+}
+
+#btns {
+  height: 50px;
+}
+
+#addBtn {
+  background-image: url(https://cdn1.iconfinder.com/data/icons/technology-media-part-1/32/filmstrip-add-512.png);
+  background-size: 38px 42px;
+  height: 45px;
+  width: 40px;
+  float: right;
+  margin-top: 35px;
+}
+
+#dltBtn {
+  background-image: url(https://cdn5.vectorstock.com/i/1000x1000/47/74/delete-button-vector-3374774.jpg);
+  background-size: 24px 21px;
+  height: 20px;
+  width: 10px;
+}
+
+#edtBtn {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/UniversalEditButton3.png/220px-UniversalEditButton3.png);
+  background-size: 22px 19px;
+  height: 20px;
+  width: 15px;
 }
 
 /* entire container, keeps perspective */
@@ -52,9 +139,8 @@ body {
 
 /* flip speed goes here */
 .flipper {
-  transition: 0.6s;
+  transition: 0.8s;
   transform-style: preserve-3d;
-
   position: relative;
 }
 
@@ -62,7 +148,6 @@ body {
 .front,
 .back {
   backface-visibility: hidden;
-
   position: absolute;
   top: 0;
   left: 0;
@@ -78,5 +163,5 @@ body {
 /* back, initially hidden pane */
 .back {
   transform: rotateY(180deg);
-  background-color: white;
+  background-color: black;
 }
